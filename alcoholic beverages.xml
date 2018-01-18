@@ -1,0 +1,1 @@
+=IF(B3="Domestic", IF(OR(_Fund=10, _Fund=70, _Fund=80, _Fund=90),"No", "Yes"), IF(B3<>"Foreign", "", IF(OR(_Fund=10, _Fund=70),"Not Included", IF(_Fund=80, _Fund=90, "No"))))
