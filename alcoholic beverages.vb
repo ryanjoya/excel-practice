@@ -3,6 +3,12 @@
 	IF(OR(_Fund=30,_Fund=40),"Yes","No")
 
 ,
-	IF(B3<>"Foreign","",
-	
-		IF(OR(_Fund=10,_Fund=70),"Not Included","No")))
+   IF (B3 <> "Foreign", "" ,
+
+					IF(OR(_Fund=10, _Fund=70),"Not Included", "No",
+		
+		IF(_Fund=80, "Yes"),
+								IF(_Fund=90,"Yes"),
+								
+									)))
+   )
