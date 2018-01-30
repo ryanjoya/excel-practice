@@ -1,0 +1,20 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+  If Target.Row = Range("zipCode").Row And _
+  Target.Column = Range("zipCode").Column Then
+    Dim IE As New InternetExplorer
+    'IE.Visible = True
+    IE.navigate "http://quickfacts.census.gov/cgi-bin/qfd/lookup?place=" & Range("zipCode").Value
+    Do
+      DoEvents
+    Loop Until IE.readyState = READYSTATE_COMPLETE
+    Dim Doc As HTMLDocument
+    Set Doc = IE.document
+    sDD = Trim(Doc.getElementsByTagName("dd")(1).innerText)
+    IE.Quit
+    Dim aDD As Variant
+    aDD = Split(sDD, ", ")
+    Range("county").Value = aDD(1)
+    Range("city").Value = aDD(0)
+    Range("state").Value = aDD(2)
+  End If
+End Sub
